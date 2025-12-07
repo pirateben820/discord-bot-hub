@@ -84,12 +84,12 @@ async def ping(sid, data):
     await sio.emit('pong', {'timestamp': data.get('timestamp')}, room=sid)
 
 
-# Import and include routers (will be created next)
-# from api_routes import users, leveling, tools, auth
-# app.include_router(users.router, prefix="/api/users", tags=["users"])
-# app.include_router(leveling.router, prefix="/api/leveling", tags=["leveling"])
-# app.include_router(tools.router, prefix="/api/tools", tags=["tools"])
-# app.include_router(auth.router, prefix="/api/auth", tags=["auth"])
+# Import and include routers
+from api_routes import users, leveling, tools
+
+app.include_router(users.router, prefix="/api/users", tags=["users"])
+app.include_router(leveling.router, prefix="/api/leveling", tags=["leveling"])
+app.include_router(tools.router, prefix="/api/tools", tags=["tools"])
 
 
 if __name__ == "__main__":
@@ -100,4 +100,5 @@ if __name__ == "__main__":
         reload=settings.debug,
         log_level="debug" if settings.debug else "info"
     )
+
 
